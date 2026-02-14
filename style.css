@@ -1,26 +1,29 @@
 /* --- 1. VARIABLES & RESET --- */
 :root {
+	/* Color Palette */
 	--primary-blue: #0056b3;
 	--primary-dark: #003d80;
 	--primary-yellow: #ffcc00;
 	--accent-yellow: #ffdb4d;
+
+	/* Neutrals */
 	--text-dark: #1f2937;
 	--text-light: #6b7280;
 	--bg-white: #ffffff;
 	--bg-light: #f3f4f6;
+
+	/* Functional */
 	--wa-green: #25d366;
 	--shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 	--shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 	--radius: 12px;
-	--header-height: 80px; /* Variabel untuk tinggi header */
+	--header-height: 80px;
 }
 
-/* ENABLE SMOOTH SCROLLING (Global) */
+/* GLOBAL SETTINGS */
 html {
 	scroll-behavior: smooth;
-	scroll-padding-top: var(
-		--header-height
-	); /* Kunci agar judul tidak ketutup header */
+	scroll-padding-top: var(--header-height); /* Agar judul tidak ketutup header */
 }
 
 * {
@@ -28,12 +31,14 @@ html {
 	padding: 0;
 	box-sizing: border-box;
 }
+
 body {
 	font-family: "Poppins", sans-serif;
 	color: var(--text-dark);
 	line-height: 1.6;
 	background-color: var(--bg-white);
 }
+
 a {
 	text-decoration: none;
 	color: inherit;
@@ -59,16 +64,19 @@ img {
 .bg-light {
 	background-color: var(--bg-light);
 }
+
 .grid-3 {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 	gap: 30px;
 }
+
 .grid-4 {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 	gap: 25px;
 }
+
 .section-header {
 	text-align: center;
 	margin-bottom: 50px;
@@ -78,12 +86,13 @@ img {
 	color: var(--primary-blue);
 	margin-bottom: 10px;
 }
+
 .text-sm {
 	font-size: 0.875rem;
 	color: var(--text-light);
 }
 
-/* --- 3. HEADER & NAV --- */
+/* --- 3. HEADER & NAV (DESKTOP DEFAULT) --- */
 .header {
 	background: transparent;
 	position: fixed;
@@ -107,7 +116,7 @@ img {
 	justify-content: space-between;
 	align-items: center;
 	width: 100%;
-	position: relative; /* Penting untuk referensi posisi absolute anak-anaknya */
+	position: relative;
 }
 
 .logo {
@@ -117,19 +126,18 @@ img {
 	display: flex;
 	align-items: center;
 	gap: 8px;
-	z-index: 2; /* Agar logo selalu di atas */
+	z-index: 2;
 }
-
 .header.scrolled .logo {
 	color: var(--primary-blue);
 }
 
-/* --- MENU DESKTOP (Tengah) --- */
+/* MENU DESKTOP (POSISI TENGAH) */
 .nav-menu {
-	position: absolute; /* Lepaskan dari aliran flexbox */
-	left: 50%; /* Mulai di tengah layar */
+	position: absolute;
+	left: 50%;
 	top: 50%;
-	transform: translate(-50%, -50%); /* Geser balik agar pas tengah-tengah */
+	transform: translate(-50%, -50%); /* Kunci posisi tengah desktop */
 	display: flex;
 	gap: 30px;
 	align-items: center;
@@ -166,18 +174,17 @@ img {
 	width: 100%;
 }
 
-/* --- ACTIONS DESKTOP (Kanan) --- */
+/* TOMBOL LOGIN DESKTOP (KANAN) */
 .nav-actions {
 	display: flex;
 	z-index: 2;
 }
 
-/* --- MOBILE ELEMENTS (Sembunyikan di Desktop!) --- */
-/* INI KUNCI PERBAIKANNYA: Sembunyikan tombol toggle dan tombol login mobile */
+/* ELEMENT MOBILE (SEMBUNYI DI DESKTOP) */
 .mobile-toggle,
 .close-menu,
 .mobile-only-btn {
-	display: none !important;
+	display: none !important; /* Wajib !important agar tidak muncul di desktop */
 }
 
 /* --- 4. BUTTONS --- */
@@ -191,6 +198,7 @@ img {
 	cursor: pointer;
 	transition: all 0.3s ease;
 }
+
 .btn-primary {
 	background-color: var(--primary-yellow);
 	color: var(--primary-blue);
@@ -222,15 +230,18 @@ img {
 
 /* --- 5. HERO SECTION --- */
 .hero {
-	/* Hapus margin-top, biar background full sampai atas */
 	padding-top: var(--header-height);
 	min-height: 100vh;
 	background:
-		linear-gradient(135deg, rgba(0, 86, 179, 0.85), rgba(0, 30, 60, 0.9)),
+		linear-gradient(
+			135deg,
+			rgba(0, 86, 179, 0.85),
+			rgba(0, 30, 60, 0.9)
+		),
 		url("https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?q=80&w=1600&auto=format&fit=crop");
 	background-size: cover;
 	background-position: center;
-	background-attachment: fixed; /* Parallax effect */
+	background-attachment: fixed;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -254,7 +265,7 @@ img {
 	opacity: 0.9;
 }
 
-/* --- 6. SCROLL ANIMATION UTILS --- */
+/* --- 6. SCROLL ANIMATIONS --- */
 .hidden-element {
 	opacity: 0;
 	transform: translateY(30px);
@@ -274,7 +285,7 @@ img {
 	transition-delay: 0.3s;
 }
 
-/* --- 7. CARDS & FOOTER (Tetap sama, hanya sedikit tweak) --- */
+/* --- 7. CARDS --- */
 .card {
 	background: var(--bg-white);
 	border-radius: var(--radius);
@@ -288,6 +299,7 @@ img {
 	transform: translateY(-5px);
 	box-shadow: var(--shadow-md);
 }
+
 .feature-card {
 	padding: 30px;
 	text-align: center;
@@ -297,6 +309,7 @@ img {
 	color: var(--primary-blue);
 	margin-bottom: 20px;
 }
+
 .program-card .card-image {
 	height: 200px;
 	background-size: cover;
@@ -333,6 +346,7 @@ img {
 	padding: 20px;
 	text-align: center;
 }
+
 .tutor-card img {
 	height: 250px;
 	width: 100%;
@@ -353,7 +367,7 @@ img {
 	margin-top: 5px;
 }
 
-/* Footer */
+/* --- 8. FOOTER & FLOATING --- */
 .footer {
 	background: #0f172a;
 	color: #cbd5e1;
@@ -392,6 +406,7 @@ img {
 	text-align: center;
 	font-size: 0.9rem;
 }
+
 .floating-wa {
 	position: fixed;
 	bottom: 30px;
@@ -427,11 +442,16 @@ img {
 	}
 }
 
-/* --- 8. RESPONSIVE MEDIA QUERIES (Updated) --- */
+/* --- 9. RESPONSIVE (FINAL FIX) --- */
 @media (max-width: 968px) {
+	/* RESET MENU KE SAMPING (HAPUS POSISI TENGAH DESKTOP) */
 	.nav-menu {
 		position: fixed;
 		top: 0;
+		left: auto !important; /* RESET PENTING */
+		transform: none !important; /* RESET PENTING */
+
+		/* Logika Sliding Drawer */
 		right: -100%;
 		width: 70%;
 		height: 100vh;
@@ -439,7 +459,6 @@ img {
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		transform: none; /* Reset transform desktop */
 		transition: 0.4s ease;
 		box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
 		z-index: 1001;
@@ -452,9 +471,10 @@ img {
 	.nav-link {
 		color: var(--text-dark);
 		font-size: 1.2rem;
+		margin: 15px 0;
 	}
 
-	/* Munculkan elemen mobile */
+	/* MUNCULKAN ELEMEN MOBILE */
 	.mobile-toggle {
 		display: block !important;
 		font-size: 1.5rem;
@@ -468,29 +488,35 @@ img {
 	.close-menu {
 		display: block !important;
 		position: absolute;
-		top: 20px;
-		right: 20px;
+		top: 30px;
+		right: 30px;
 		font-size: 2rem;
 		cursor: pointer;
 		color: var(--text-dark);
 	}
 
-	/* Munculkan tombol login mobile, sembunyikan tombol login desktop */
+	/* Tombol Login Mobile (Muncul) */
 	.mobile-only-btn {
-		display: inline-flex !important; /* Paksa muncul di HP */
-		margin-top: 20px;
+		display: inline-flex !important;
+		margin-top: 30px;
 		border-color: var(--primary-blue);
 		color: var(--primary-blue);
 	}
+
+	/* Tombol Login Desktop (Sembunyi) */
 	.nav-actions {
-		display: none !important; /* Sembunyikan tombol desktop */
+		display: none !important;
 	}
 
+	/* Layout Mobile Lainnya */
 	.hero-title {
 		font-size: 2.5rem;
 	}
 	.footer-content {
 		grid-template-columns: 1fr;
 		text-align: center;
+	}
+	.footer-contact p {
+		justify-content: center;
 	}
 }
