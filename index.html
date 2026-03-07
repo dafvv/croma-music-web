@@ -62,14 +62,23 @@
 		<section id="home" class="hero">
 			<div class="container hero-content hidden-element">
 				<h1 class="hero-title">
-					Belajar Musik yang <span class="highlight">Fun</span> Tapi
-					Serius
+					Asah Bakat <span class="highlight">Musikmu</span> Bersama
+					Kami
 				</h1>
 				<p class="hero-desc">
 					Platform belajar musik modern di Jabodetabek. Pilih metode
 					Onsite atau Home Visit dengan jadwal fleksibel.
 				</p>
 				<div class="hero-buttons">
+					<p
+						style="
+							margin-bottom: 10px;
+							font-weight: 600;
+							font-size: 1.1rem;
+						"
+					>
+						Mau coba gratis?
+					</p>
 					<a
 						href="https://wa.me/628123456789"
 						class="btn btn-primary pulse-animation"
@@ -106,12 +115,12 @@
 					</div>
 					<div class="card feature-card hidden-element delay-300">
 						<div class="icon-box">
-							<i class="fa-solid fa-graduation-cap"></i>
+							<i class="fa-solid fa-user-tie"></i>
 						</div>
-						<h3>Kurikulum Terstruktur</h3>
+						<h3>Tutor yang Berpengalaman</h3>
 						<p>
-							Materi pembelajaran yang disesuaikan dengan level
-							kemampuan, dari pemula hingga advanced.
+							Tutor kami berupa sarjana musik dan pengajar
+							tersertifikasi.
 						</p>
 					</div>
 				</div>
@@ -179,11 +188,14 @@
 						</div>
 					</div>
 
-					<div class="card program-card hidden-element delay-300">
+					<div
+						class="card program-card hidden-element delay-300"
+						id="btn-other-instruments"
+					>
 						<div
 							class="card-image"
 							style="
-								background-image: url(&quot;https://images.unsplash.com/photo-1525362081669-2b476bb628c3?q=80&w=800&auto=format&fit=crop&quot;);
+								background-image: url(&quot;https://images.unsplash.com/photo-1511379938547-c1f69419868d?q=80&w=800&auto=format&fit=crop&quot;);
 							"
 						>
 							<div class="play-overlay">
@@ -191,8 +203,8 @@
 							</div>
 						</div>
 						<div class="card-body">
-							<h3>Vokal</h3>
-							<p class="text-sm">Teknik & Performance</p>
+							<h3>Instrumen Lainnya</h3>
+							<p class="text-sm">Lihat Demo Video</p>
 						</div>
 					</div>
 				</div>
@@ -204,9 +216,16 @@
 				<div class="section-header hidden-element">
 					<h2>Mentor Kami</h2>
 					<p>Belajar langsung dari praktisi dan akademisi musik.</p>
+					<select id="mentor-filter" class="filter-dropdown">
+						<option value="all">Semua Instrumen</option>
+						<option value="piano">Piano</option>
+						<option value="vocal">Vokal</option>
+						<option value="guitar">Gitar</option>
+						<option value="drum">Drum</option>
+					</select>
 				</div>
-				<div class="grid-4">
-					<div class="card tutor-card hidden-element">
+				<div class="grid-4" id="mentor-grid">
+					<div class="card tutor-card hidden-element data-category="piano">
 						<img
 							src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=400&auto=format&fit=crop"
 							alt="Mentor"
@@ -217,7 +236,7 @@
 							<span class="badge">Piano Expert</span>
 						</div>
 					</div>
-					<div class="card tutor-card hidden-element delay-100">
+					<div class="card tutor-card hidden-element delay-100" data-category="vocal">
 						<img
 							src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=400&auto=format&fit=crop"
 							alt="Mentor"
@@ -228,7 +247,7 @@
 							<span class="badge">Vocal Coach</span>
 						</div>
 					</div>
-					<div class="card tutor-card hidden-element delay-200">
+					<div class="card tutor-card hidden-element delay-200" data-category="guitar">
 						<img
 							src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?q=80&w=400&auto=format&fit=crop"
 							alt="Mentor"
@@ -239,7 +258,7 @@
 							<span class="badge">Guitarist</span>
 						</div>
 					</div>
-					<div class="card tutor-card hidden-element delay-300">
+					<div class="card tutor-card hidden-element delay-300" data-category="drum">
 						<img
 							src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=400&auto=format&fit=crop"
 							alt="Mentor"
@@ -259,11 +278,8 @@
 				<div class="footer-content">
 					<div class="footer-brand">
 						<h3>CROMA MUSIC</h3>
-						<p>
-							Sekolah musik yang mengutamakan kenyamanan dan
-							kualitas pembelajaran untuk semua kalangan.
-						</p>
-					</div>
+						<p>Asah bakat musikmu bersama kami.</p>
+				</div>
 					<div class="footer-links">
 						<h4>Navigasi</h4>
 						<ul>
@@ -276,6 +292,9 @@
 						<h4>Hubungi Kami</h4>
 						<p>
 							<i class="fa-brands fa-whatsapp"></i> 0812-3456-7890
+						</p>
+						<p>
+							<i class="fa-brands fa-instagram"></i> @cromamusic.id
 						</p>
 						<p>
 							<i class="fa-solid fa-envelope"></i>
@@ -302,7 +321,12 @@
 			<i class="fa-brands fa-whatsapp"></i>
 			<span>Tanya Admin</span>
 		</a>
-
+		<div id="video-modal" class="modal">
+			<div class="modal-content">
+				<span class="close-modal"><i class="fa-solid fa-xmark"></i></span>
+				<iframe id="demo-video" width="100%" height="400" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Demo Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+			</div>
+		</div>
 		<script src="js/script.js"></script>
 	</body>
 </html>
