@@ -63,3 +63,55 @@ const observer = new IntersectionObserver((entries) => {
 // Mendaftarkan semua elemen dengan class 'hidden-element' ke observer
 const hiddenElements = document.querySelectorAll(".hidden-element");
 hiddenElements.forEach((el) => observer.observe(el));
+
+// --- 5. MODAL VIDEO POP-UP ---
+document.addEventListener("DOMContentLoaded", () => {
+	const modal = document.getElementById("video-modal");
+	const btnOther = document.getElementById("btn-other-instruments");
+	const closeModal = document.querySelector(".close-modal");
+	const iframe = document.getElementById("demo-video");
+
+	if (btnOther && modal) {
+		btnOther.addEventListener("click", (e) => {
+			e.preventDefault(); // Mencegah sifat default jika ada tag link
+			modal.classList.add("active");
+		});
+	}
+
+	if (closeModal) {
+		closeModal.addEventListener("click", () => {
+			modal.classList.remove("active");
+			if (iframe) iframe.src = iframe.src; // Force stop video
+		});
+	}
+
+	window.addEventListener("click", (e) => {
+		if (e.target === modal) {
+			modal.classList.remove("active");
+			if (iframe) iframe.src = iframe.src;
+		}
+	});
+});
+
+// --- 6. FILTER LOGIC UNTUK MENTOR ---
+const filterDropdown = document.getElementById("mentor-filter");
+const tutorCards = document.querySelectorAll(".tutor-card");
+
+if (filterDropdown) {
+	filterDropdown.addEventListener("change", (e) => {
+		const selectedCategory = e.target.value;
+
+		tutorCards.forEach((card) => {
+			card.classList.remove("show-element"); // Reset animasi awal
+			const cardCategory = card.getAttribute("data-category");
+
+			if (selectedCategory === "all" || cardCategory === selectedCategory) {
+				card.style.display = "block";
+				// Timeout kecil agar DOM dirender ulang sebelum trigger class animasi CSS
+				setTimeout(() => card.classList.add("show-element"), 50);
+			} else {
+				card.style.display = "none";
+			}
+		});
+	});
+}
