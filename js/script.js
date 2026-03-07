@@ -64,33 +64,41 @@ const observer = new IntersectionObserver((entries) => {
 const hiddenElements = document.querySelectorAll(".hidden-element");
 hiddenElements.forEach((el) => observer.observe(el));
 
-// --- 5. MODAL VIDEO POP-UP ---
+// --- 5. MODAL VIDEO POP-UP (AUTOPLAY LOGIC) ---
 document.addEventListener("DOMContentLoaded", () => {
 	const modal = document.getElementById("video-modal");
 	const btnOther = document.getElementById("btn-other-instruments");
 	const closeModal = document.querySelector(".close-modal");
 	const iframe = document.getElementById("demo-video");
 
-	if (btnOther && modal) {
+	if (btnOther && modal && iframe) {
+		// Simpan URL dasar ke dalam konstanta state
+		const baseVideoSrc = iframe.src.split('?')[0]; 
+
 		btnOther.addEventListener("click", (e) => {
-			e.preventDefault(); // Mencegah sifat default jika ada tag link
+			e.preventDefault();
+			// Injeksi parameter autoplay saat modal dipanggil
+			iframe.src = `${baseVideoSrc}?autoplay=1`;
 			modal.classList.add("active");
 		});
-	}
 
-	if (closeModal) {
-		closeModal.addEventListener("click", () => {
+		// Fungsi modular untuk menghentikan video
+		const stopVideo = () => {
 			modal.classList.remove("active");
-			if (iframe) iframe.src = iframe.src; // Force stop video
+			// Kembalikan ke URL dasar (menghentikan pemutaran secara instan)
+			iframe.src = baseVideoSrc; 
+		};
+
+		if (closeModal) {
+			closeModal.addEventListener("click", stopVideo);
+		}
+
+		window.addEventListener("click", (e) => {
+			if (e.target === modal) {
+				stopVideo();
+			}
 		});
 	}
-
-	window.addEventListener("click", (e) => {
-		if (e.target === modal) {
-			modal.classList.remove("active");
-			if (iframe) iframe.src = iframe.src;
-		}
-	});
 });
 
 // --- 6. FILTER LOGIC UNTUK MENTOR ---
