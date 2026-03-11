@@ -86,11 +86,13 @@ img {
 	margin-bottom: 10px;
 }
 
-/* Animations Utilities */
 .hidden-element {
 	opacity: 0;
 	transform: translateY(30px);
-	transition: all 0.8s ease-out;
+	transition:
+		opacity 0.8s ease-out,
+		transform 0.8s ease-out;
+	will-change: opacity, transform;
 }
 .show-element {
 	opacity: 1;
@@ -234,7 +236,11 @@ img {
 	height: var(--header-height);
 	display: flex;
 	align-items: center;
-	transition: all 0.4s ease;
+	transition:
+		background-color 0.4s ease,
+		backdrop-filter 0.4s ease,
+		box-shadow 0.4s ease;
+	will-change: background-color, backdrop-filter, box-shadow;
 }
 .header.scrolled {
 	background: rgba(255, 255, 255, 0.95);
@@ -242,7 +248,6 @@ img {
 	box-shadow: var(--shadow-sm);
 }
 
-/* Logo Changes on Scroll */
 .header.scrolled .logo {
 	color: var(--primary-blue);
 }
@@ -267,7 +272,6 @@ img {
 	border-color: var(--primary-blue);
 }
 
-/* Desktop Navigation Styling */
 .nav-container {
 	display: flex;
 	justify-content: space-between;
@@ -280,7 +284,7 @@ img {
 	position: absolute;
 	left: 50%;
 	top: 50%;
-	transform: translate(-50%, -50%); /* Centering Desktop Menu */
+	transform: translate(-50%, -50%);
 	display: flex;
 	gap: 30px;
 	align-items: center;
@@ -317,7 +321,6 @@ img {
 	width: 100%;
 }
 
-/* Desktop Button Styling */
 .nav-actions {
 	display: flex;
 	z-index: 2;
@@ -331,7 +334,6 @@ img {
 	color: white;
 }
 
-/* Elements Hidden on Desktop by Default */
 .mobile-toggle,
 .close-menu,
 .mobile-only-btn {
@@ -341,7 +343,6 @@ img {
 /* =========================================
    5. SECTIONS (Hero, Footer)
 ========================================= */
-/* Hero Section */
 .hero {
 	padding-top: var(--header-height);
 	min-height: 100vh;
@@ -373,7 +374,6 @@ img {
 	opacity: 0.9;
 }
 
-/* Footer */
 .footer {
 	background: #0f172a;
 	color: #cbd5e1;
@@ -413,7 +413,6 @@ img {
 	font-size: 0.9rem;
 }
 
-/* Floating WA */
 .floating-wa {
 	position: fixed;
 	bottom: 30px;
@@ -453,7 +452,6 @@ img {
    6. RESPONSIVE (Mobile Overrides)
 ========================================= */
 @media (max-width: 968px) {
-	/* 1. Header & Nav Reset */
 	.mobile-toggle {
 		display: block;
 		font-size: 1.5rem;
@@ -466,14 +464,14 @@ img {
 
 	.nav-actions {
 		display: none;
-	} /* Hide Desktop Login */
+	}
 
 	.nav-menu {
-		position: fixed; /* Override Absolute */
+		position: fixed;
 		top: 0;
-		right: -100%; /* Start hidden off-screen */
-		left: auto; /* Reset desktop centering */
-		transform: none; /* Reset desktop centering */
+		right: -100%;
+		left: auto;
+		transform: none;
 
 		width: 70%;
 		height: 100vh;
@@ -483,11 +481,13 @@ img {
 		align-items: center;
 		box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
 		z-index: 1001;
+
+		transition: right 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
 	}
 
 	.nav-menu.active {
 		right: 0;
-	} /* Slide in */
+	}
 
 	.nav-link {
 		color: var(--text-dark);
@@ -512,7 +512,6 @@ img {
 		color: var(--primary-blue);
 	}
 
-	/* 2. Layout Adjustments */
 	.hero-title {
 		font-size: 2.5rem;
 	}
@@ -526,7 +525,6 @@ img {
 }
 
 /* --- UI TAMBAHAN --- */
-/* --- UI TAMBAHAN: MODERNIZE DROPDOWN --- */
 .filter-dropdown {
 	margin-top: 15px;
 	padding: 12px 45px 12px 20px;
@@ -596,4 +594,24 @@ img {
 }
 .close-modal:hover {
 	color: var(--primary-yellow);
+}
+.program-flex {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.program-flex .card {
+	flex: 1 1 240px;
+	max-width: 280px;
+}
+.feature-flex {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.feature-flex .card {
+	flex: 1 1 300px;
+	max-width: 350px;
 }
